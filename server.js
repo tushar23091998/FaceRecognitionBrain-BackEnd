@@ -13,8 +13,10 @@ const db=knex(
 {
   client: 'pg',
   connection: {
-    connectionString : process.env.DATABASE_URL,
-    ssl: true,
+    host : '127.0.0.1',
+    user : 'postgres',
+    password : 'Tushar@23',
+    database : 'smartbrain'
   }
 });
 
@@ -27,7 +29,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/',(req,res)=>{
-	res.send('it is working');
+	res.json(database.users);
 })
 
 app.post('/signin',(req,res)=>{
@@ -50,6 +52,6 @@ app.post('/imageurl',(req,res)=>{
 	image.handleAPI(req,res)
 })
 
-app.listen(process.env.PORT || 3001,()=>{
-	console.log(`app is running on port ${process.env.PORT}`);
+app.listen(3001,()=>{
+	console.log('app running');
 })
